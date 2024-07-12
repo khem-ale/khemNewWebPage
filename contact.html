@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographers' Contacts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            background-color: rgb(26, 25, 23);
+            color: white;
+            font-family: "Poppins", sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgb(38, 39, 38);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul li a:hover {
+            color: rgb(142, 142, 202);
+            font-size: 1.25rem;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Container background color with opacity */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .photographer {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .photographer h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .photographer p {
+            margin: 0;
+            color: #555;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <font color='white'>PIXELS CONTACT</font>
+            </div>
+            <div class="right"></div>
+            <ul>
+                <li><a href="index.html">Portfolio</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="experience.html">Experience and Skills Page</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="photographer" id="photographer1">
+            <h2>John McHendy</h2>
+            <p>Email: johnmchendy@example.com<br>Phone: +1 (555) 123-4567</p>
+        </div>
+        <div class="photographer" id="photographer2">
+            <h2>Alex Green</h2>
+            <p>Email: alexgreen@example.com<br>Phone: +1 (555) 234-5678</p>
+        </div>
+        <div class="photographer" id="photographer3">
+            <h2>Michael Carter</h2>
+            <p>Email: michaelcarter@example.com<br>Phone: +1 (555) 345-6789</p>
+        </div>
+        <div class="photographer" id="photographer4">
+            <h2>Michael Brown</h2>
+            <p>Email: michaelbrown@example.com<br>Phone: +1 (555) 456-7890</p>
+        </div>
+        <div class="photographer" id="photographer5">
+            <h2>Sarah Wilson</h2>
+            <p>Email: sarahwilson@example.com<br>Phone: +1 (555) 567-8901</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            color: #ccc;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Admin Panel</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Portfolio</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="experience.html">Experience and Skills Page</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+            <!-- Add more links for other functionalities as needed -->
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Content will be displayed here based on the selected functionality -->
+        <div class="content">
+            <!-- Manage Portfolio Section -->
+            <section id="manage-portfolio">
+                <h2>Manage Portfolio</h2>
+                <form id="portfolio-form" action="admin.php" method="POST" enctype="multipart/form-data">
+                    <div class="error" id="error-message"></div>
+                    <label for="portfolio-item-name">Portfolio Item Name:</label>
+                    <input type="text" id="portfolio-item-name" name="portfolio-item-name" required>
+                    <br>
+                    <label for="portfolio-item-description">Description:</label>
+                    <textarea id="portfolio-item-description" name="portfolio-item-description" rows="4" required></textarea>
+                    <br>
+                    <label for="portfolio-item-photo">Upload Photo:</label>
+                    <input type="file" id="portfolio-item-photo" name="portfolio-item-photo" accept="image/*" required>
+                    <br>
+                    <input type="submit" value="Add Portfolio Item">
+                </form>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Portfolio Item Name</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portfolio-items">
+                        <!-- Table rows will be dynamically populated with portfolio items -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 YourWebsiteName. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Form validation
+        document.getElementById('portfolio-form').addEventListener('submit', function (event) {
+            const name = document.getElementById('portfolio-item-name').value.trim();
+            const description = document.getElementById('portfolio-item-description').value.trim();
+            const photo = document.getElementById('portfolio-item-photo').files[0];
+            const errorMessage = document.getElementById('error-message');
+
+            let isValid = true;
+            let errors = [];
+
+            if (!name) {
+                errors.push('Portfolio item name is required.');
+                isValid = false;
+            }
+            if (!description) {
+                errors.push('Description is required.');
+                isValid = false;
+            }
+            if (!photo) {
+                errors.push('Photo is required.');
+                isValid = false;
+            } else if (!['image/jpeg', 'image/png', 'image/gif'].includes(photo.type)) {
+                errors.push('Only JPG, PNG, and GIF files are allowed.');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                errorMessage.innerHTML = errors.join('<br>');
+            }
+        });
+
+        // Fetch portfolio items
+        function fetchPortfolioItems() {
+            fetch('admin.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('portfolio-items').innerHTML = data;
+                });
+        }
+
+        // Initial fetch
+        fetchPortfolioItems();
+    </script>
+</body>
+
+</html>
